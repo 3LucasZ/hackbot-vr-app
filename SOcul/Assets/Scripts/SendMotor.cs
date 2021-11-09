@@ -22,7 +22,7 @@ public class SendMotor : MonoBehaviour
         new Thread(() =>
         {
             mySock = new UdpClient(6001);
-            mySock.Connect("192.168.1.191", 5001);
+            mySock.Connect(Config.BOT_IP, Config.BOT_MOTOR_PORT);
         }).Start();
     }
 

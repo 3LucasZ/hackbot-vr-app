@@ -14,7 +14,7 @@ public class SendServo : MonoBehaviour
     public static float tilt;
     private float PAN_CENTER = 58;
     private float TILT_CENTER = 130;
-    
+
     UdpClient mySock;
     byte[] sendBytes = new byte[2];
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class SendServo : MonoBehaviour
         new Thread(() =>
         {
             mySock = new UdpClient(6000);
-            mySock.Connect("192.168.1.191", 5000);
+            mySock.Connect(Config.BOT_IP, Config.BOT_SERVO_PORT);
 
         }).Start();
     }
@@ -34,7 +34,7 @@ public class SendServo : MonoBehaviour
     {
         pan = NormalizePan(headset.transform.rotation.y);
         tilt = NormalizeTilt(headset.transform.rotation.x);
-        Debug.Log("(" + pan + "," + tilt + ")");
+        //Debug.Log("(" + pan + "," + tilt + ")");
         sendBytes[0] = (byte)(int)pan;
         sendBytes[1] = (byte)(int)tilt;
         mySock.Send(sendBytes, 2);
@@ -53,4 +53,3 @@ public class SendServo : MonoBehaviour
         return newAngle;
     }
 }
-

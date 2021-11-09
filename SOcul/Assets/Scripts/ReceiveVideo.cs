@@ -16,13 +16,13 @@ public class ReceiveVideo : MonoBehaviour
 
     void Start()
     {
-        otherIPEP = new IPEndPoint(IPAddress.Any, 5000);
+        otherIPEP = new IPEndPoint(IPAddress.Any, Config.BOT_CAMERA_PORT);
         dynamicImage = GameObject.Find("DynamicImage").GetComponent<RawImage>();
         texture = new Texture2D(1, 1);
 
         new Thread(() =>
         {
-            mySock = new UdpClient(5000);
+            mySock = new UdpClient(Config.OPERATOR_CAMERA_PORT);
             while (true)
             {
                 data = mySock.Receive(ref otherIPEP);
