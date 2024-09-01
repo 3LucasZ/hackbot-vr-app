@@ -1,2 +1,2 @@
-# RobotVR
-Oculus Go application for robot operation
+# hackbot-vr-app
+Oculus Go application to remotely operate hackbot via
